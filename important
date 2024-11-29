@@ -3,3 +3,8 @@ apache2ctl status
 apache2ctl stop
 mysql -h 127.0.0.1 -P 3306 -u root -p
 mariadb
+
+git rm -r --cached .github
+git rm -r --cached .devcontainer
+git add .
+git commit -m "Remove all .gitignore files "
