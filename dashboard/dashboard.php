@@ -7,11 +7,11 @@
     <div class="flex">
         <!-- Sidebar -->
         <div class="bg-blue-700 w-16 h-screen flex flex-col items-center py-4">
-            <a href="?content=../page/timetable.html" class="fas fa-bars text-white mb-8"></a>
-            <a href="?content=../page/user.html" class="fas fa-user text-white mb-8"></a>
+            <a href="?content=../pages/timetable.html" class="fas fa-bars text-white mb-8"></a>
+            <a href="?content=../pages/user.html" class="fas fa-user text-white mb-8"></a>
             <a href="" class="fas fa-cog text-white mb-8"></a>
             <a href="" class="fas fa-sync-alt text-white mb-8"></a>
-            <a href="../page/login.html" class="fas fa-sign-out-alt text-white"></a>
+            <a href="../pages/login.html" class="fas fa-sign-out-alt text-white"></a>
         </div>
         <!-- Main Content -->
         <div class="flex-1 bg-gray-200 p-8">
