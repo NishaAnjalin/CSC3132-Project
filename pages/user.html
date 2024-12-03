@@ -1,55 +1,80 @@
 <html>
 <head>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body class="bg-gray-800">
-    
-        <!-- Main Content -->
-        <div class="flex-1 bg-gray-200 p-8">
-            <div class="bg-white p-4 rounded shadow-md">
+    <!-- Main Content -->
+    <div class="flex-1 bg-gray-200 p-8">
+        <div class="bg-white p-6 rounded shadow-md max-w-lg mx-auto">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">User Details</h2>
+            
+            <form action="update_user.php" method="POST">
+                <!-- User Name -->
                 <div class="mb-4">
-                    <label class="block text-gray-700">Name</label>
-                    <input type="text" value="" class="bg-gray-300 p-2 rounded w-full">
+                    <label class="block text-gray-700 font-bold mb-2" for="name">Name</label>
+                    <input type="text" id="name" name="name" value="John Doe" class="bg-gray-300 p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                 </div>
-                <div class="mb-4">
-                    <label class="block text-gray-700">Access</label>
-                    <input type="text" value="" class="bg-gray-300 p-2 rounded w-full">
-                </div>
-                <a href="?content=../page/changepass.html" class="bg-gray-300 p-2 rounded w-full">Change Password</a>
-                <!-- <button class="bg-gray-300 p-2 rounded w-full">Change Password</button> -->
-            </div>
-        </div>
 
+                <!-- User Access -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-bold mb-2" for="access">Access Level</label>
+                    <select id="access" name="access" class="bg-gray-300 p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="Admin" selected>Admin</option>
+                        <option value="Editor">Editor</option>
+                        <option value="Viewer">Viewer</option>
+                    </select>
+                </div>
+
+                <!-- Change Password Button -->
+<div class="mb-4">
+    <a href="../pages/changepass.html" class="bg-blue-500 text-white p-2 rounded block text-center">Change Password</a>
+</div>
+
+
+                <!-- Submit Button -->
+                <div class="text-right">
+                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- Change Password Modal -->
-    <!--<div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div id="passwordModal" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
         <div class="bg-white p-6 rounded shadow-md w-96">
-            <h2 class="text-black text-lg font-bold mb-4">Change New Password</h2>
-            <div class="mb-4">
-                <label class="block text-gray-700">New Password</label>
-                <input type="password" class="bg-gray-300 p-2 rounded w-full">
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700">Re Enter the New Password</label>
-                <input type="password" class="bg-gray-300 p-2 rounded w-full">
-            </div>
-            <div class="flex justify-between">
-                <button class="bg-red-500 text-white p-2 rounded w-24">Cancel</button>
-                <button class="bg-green-500 text-white p-2 rounded w-24">Update</button>
-            </div>
-        </div>
-    </div>-->
+            <h2 class="text-black text-lg font-bold mb-4">Change Password</h2>
+            <form action="change_password.php" method="POST">
+                <!-- New Password -->
+                <div class="mb-4">
+                    <label class="block text-gray-700">New Password</label>
+                    <input type="password" name="new_password" class="bg-gray-300 p-2 rounded w-full" required>
+                </div>
 
-    <!-- Confirmation Modal -->
-    <!--div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-        <div class="bg-white p-6 rounded shadow-md w-96">
-            <h2 class="text-black text-lg font-bold mb-4">Are You sure to Change the Password?</h2>
-            <div class="flex justify-between">
-                <button class="bg-red-500 text-white p-2 rounded w-24">Cancel</button>
-                <button class="bg-green-500 text-white p-2 rounded w-24">OK</button>
-            </div>
+                <!-- Confirm New Password -->
+                <div class="mb-4">
+                    <label class="block text-gray-700">Re-enter New Password</label>
+                    <input type="password" name="confirm_password" class="bg-gray-300 p-2 rounded w-full" required>
+                </div>
+
+                <div class="flex justify-between">
+                    <button type="button" onclick="toggleModal('passwordModal')" class="bg-red-500 text-white p-2 rounded w-24">Cancel</button>
+                    <button type="submit" class="bg-green-500 text-white p-2 rounded w-24">Update</button>
+                </div>
+            </form>
         </div>
-    </div>-->
+    </div>
+
+    <script>
+        // Toggle modal visibility
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+            } else {
+                modal.classList.add('hidden');
+            }
+        }
+    </script>
 </body>
 </html>

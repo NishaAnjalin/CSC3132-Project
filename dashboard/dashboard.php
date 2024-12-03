@@ -14,7 +14,7 @@
             <a href="?content=../pages/user.html" class="fas fa-user text-white text-2xl mb-8" title="User"></a>
             <a href="?content=../pages/settings.html" class="fas fa-cog text-white text-2xl mb-8" title="Settings"></a>
             <a href="?content=../pages/sync.html" class="fas fa-sync-alt text-white text-2xl mb-8" title="Sync"></a>
-            <a href="../pages/login.html" class="fas fa-sign-out-alt text-white text-2xl" title="Logout"></a>
+            <a href="../pages/login.php" class="fas fa-sign-out-alt text-white text-2xl" title="Logout"></a>
         </div>
 
         <!-- Main Content -->
@@ -43,6 +43,25 @@
                             <p class="font-bold">John Doe</p>
                             <p class="text-sm">Admin</p>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lab Details -->
+            <div class="bg-white rounded-lg shadow p-6 mb-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-4">Lab Details</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Lab 1 -->
+                    <div class="bg-blue-100 p-4 rounded-lg">
+                        <h3 class="text-lg font-bold text-blue-800">Lab 1 (CL1)</h3>
+                        <p class="text-gray-700">Equipped for computer science practicals, including high-performance systems and software for programming, web development, and database management.</p>
+                        <button class="mt-4 bg-blue-700 text-white px-4 py-2 rounded">Reserve Lab 1</button>
+                    </div>
+                    <!-- Lab 2 -->
+                    <div class="bg-blue-100 p-4 rounded-lg">
+                        <h3 class="text-lg font-bold text-blue-800">Lab 2 (CL2)</h3>
+                        <p class="text-gray-700">Designed for advanced research and development, featuring AI and ML tools, robotics kits, and virtual reality equipment.</p>
+                        <button class="mt-4 bg-blue-700 text-white px-4 py-2 rounded">Reserve Lab 2</button>
                     </div>
                 </div>
             </div>
