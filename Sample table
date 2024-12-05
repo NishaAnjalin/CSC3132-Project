@@ -1,0 +1,158 @@
+CREATE TABLE `timetable` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `class_name` VARCHAR(50) NOT NULL,
+    `day` ENUM('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday') NOT NULL,
+    `subject_code` VARCHAR(10) NOT NULL,
+    `room` VARCHAR(20) NOT NULL
+);
+
+
+timetable.php
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "your_database";
+
+// Connect to the database
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch timetable data
+$sql = "SELECT * FROM timetable ORDER BY FIELD(day, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday')";
+$result = $conn->query($sql);
+$timetable = [];
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $timetable[$row['day']][] = $row;
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dynamic Timetable</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body class="bg-white text-black">
+    <div class="p-4">
+        <h1 class="text-xl font-bold mb-4">Dynamic Timetable</h1>
+        <table class="table-auto w-full text-left">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="px-4 py-2">Day</th>
+                    <th class="px-4 py-2">Class Name</th>
+                    <th class="px-4 py-2">Subject Code</th>
+                    <th class="px-4 py-2">Room</th>
+                    <th class="px-4 py-2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($timetable as $day => $entries): ?>
+                    <?php foreach ($entries as $entry): ?>
+                        <tr class="border-b">
+                            <td class="px-4 py-2"><?php echo $day; ?></td>
+                            <td class="px-4 py-2"><?php echo $entry['class_name']; ?></td>
+                            <td class="px-4 py-2"><?php echo $entry['subject_code']; ?></td>
+                            <td class="px-4 py-2"><?php echo $entry['room']; ?></td>
+                            <td class="px-4 py-2">
+                                <a href="edit_timetable.php?id=<?php echo $entry['id']; ?>" class="text-blue-500 mr-2">Edit</a>
+                                <a href="delete_timetable.php?id=<?php echo $entry['id']; ?>" class="text-red-500">Delete</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+        <a href="add_timetable.php" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded">Add New Entry</a>
+    </div>
+</body>
+</html>
+
+<?php
+$conn->close();
+?>
+
+Add New Entry (add_timetable.php)
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $class_name = $_POST['class_name'];
+    $day = $_POST['day'];
+    $subject_code = $_POST['subject_code'];
+    $room = $_POST['room'];
+
+    $conn = new mysqli('localhost', 'root', '', 'your_database');
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "INSERT INTO timetable (class_name, day, subject_code, room) VALUES (?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('ssss', $class_name, $day, $subject_code, $room);
+
+    if ($stmt->execute()) {
+        echo "<script>alert('Entry added successfully!'); window.location.href='timetable.php';</script>";
+    } else {
+        echo "<script>alert('Error adding entry.'); window.history.back();</script>";
+    }
+    $stmt->close();
+    $conn->close();
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add New Timetable Entry</title>
+</head>
+<body>
+    <form method="POST">
+        <label>Class Name:</label>
+        <input type="text" name="class_name" required><br>
+        <label>Day:</label>
+        <select name="day">
+            <option>Monday</option>
+            <option>Tuesday</option>
+            <option>Wednesday</option>
+            <option>Thursday</option>
+            <option>Friday</option>
+        </select><br>
+        <label>Subject Code:</label>
+        <input type="text" name="subject_code" required><br>
+        <label>Room:</label>
+        <input type="text" name="room" required><br>
+        <button type="submit">Add</button>
+    </form>
+</body>
+</html>
+
+Update and Delete Scripts
+
+edit_timetable.php
+// Similar to the "add_timetable.php" with data prefilled for the selected entry and an UPDATE query.
+
+delete_timetable.php
+<?php
+$id = $_GET['id'];
+
+$conn = new mysqli('localhost', 'root', '', 'your_database');
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "DELETE FROM timetable WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param('i', $id);
+
+if ($stmt->execute()) {
+    echo "<script>alert('Entry deleted successfully!'); window.location.href='timetable.php';</script>";
+} else {
+    echo "<script>alert('Error deleting entry.'); window.history.back();</script>";
+}
+$stmt->close();
+$conn->close();
+?>
