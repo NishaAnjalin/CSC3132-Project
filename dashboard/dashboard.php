@@ -11,7 +11,7 @@
             <div class="text-white text-lg font-bold mb-6">Menu</div>
             <!-- Sidebar Links -->
             <a href="?content=../pages/timetable.html" class="fas fa-bars text-white text-2xl mb-8" title="Timetable"></a>
-            <a href="?content=../pages/user.html" class="fas fa-user text-white text-2xl mb-8" title="User"></a>
+            <a href="?content=../pages/user.php" class="fas fa-user text-white text-2xl mb-8" title="User"></a>
             <a href="?content=../pages/settings.html" class="fas fa-cog text-white text-2xl mb-8" title="Settings"></a>
             <a href="?content=../pages/sync.html" class="fas fa-sync-alt text-white text-2xl mb-8" title="Sync"></a>
             <a href="../pages/login.php" class="fas fa-sign-out-alt text-white text-2xl" title="Logout"></a>
