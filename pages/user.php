@@ -1,9 +1,9 @@
 <?php
 // Connect to database
-$servername = "localhost";
+$servername = "127.0.0.1:3306";
 $username = "root";
-$password = "";
-$dbname = "your_database";
+$password = "mariadb";
+$dbname = "Lab";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
