@@ -3,7 +3,7 @@
 $servername = "127.0.0.1:3306";
 $username = "root";
 $password = "mariadb";
-$dbname = "timetable_management";
+$dbname = "timetable_management;
 ";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
