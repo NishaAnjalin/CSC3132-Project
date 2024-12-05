@@ -1,34 +1,40 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Change Password</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
-<body class="bg-gray-800">
+<body class="bg-gray-800 text-white">
+
+    <!-- Trigger Button -->
+    <div class="flex justify-center items-center h-screen">
+        <button id="openModal" class="bg-blue-500 text-white p-3 rounded">Change Password</button>
+    </div>
 
     <!-- Change Password Modal -->
-    <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div id="passwordModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
         <div class="bg-white p-6 rounded shadow-md w-96">
             <h2 class="text-black text-lg font-bold mb-4 text-center">Change New Password</h2>
-            <form id="changePasswordForm">
+            <form action="changepass.php" method="POST" id="changePasswordForm">
                 <!-- New Password Field -->
                 <div class="mb-4 relative">
                     <label class="block text-gray-700">New Password</label>
-                    <input type="password" id="newPassword" class="bg-gray-300 p-2 rounded w-full pr-10" required>
-                    <!-- Eye Icon for Password Visibility Toggle -->
+                    <input type="password" name="newPassword" id="newPassword" class="bg-gray-300 p-2 rounded w-full pr-10" required>
                     <i id="toggleNewPassword" class="fas fa-eye absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer text-gray-500"></i>
                 </div>
                 
                 <!-- Re-enter New Password Field -->
                 <div class="mb-4 relative">
                     <label class="block text-gray-700">Re-enter the New Password</label>
-                    <input type="password" id="confirmPassword" class="bg-gray-300 p-2 rounded w-full pr-10" required>
-                    <!-- Eye Icon for Password Visibility Toggle -->
+                    <input type="password" name="confirmPassword" id="confirmPassword" class="bg-gray-300 p-2 rounded w-full pr-10" required>
                     <i id="toggleConfirmPassword" class="fas fa-eye absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer text-gray-500"></i>
                 </div>
 
-                <!-- Error or Success Message -->
-                <p id="message" class="text-red-500 text-sm mb-4 hidden">Passwords do not match!</p>
-                <p id="successMessage" class="text-green-500 text-sm mb-4 hidden">Password updated successfully!</p>
+                <!-- Password Strength -->
+                <p id="passwordStrength" class="text-sm mb-4"></p>
 
                 <!-- Buttons -->
                 <div class="flex justify-between">
@@ -40,10 +46,10 @@
     </div>
 
     <script>
-        // Toggle visibility of password
-        document.getElementById('toggleNewPassword').addEventListener('click', function() {
-            var passwordField = document.getElementById('newPassword');
-            var icon = document.getElementById('toggleNewPassword');
+        // Toggle visibility of passwords
+        function togglePasswordVisibility(inputId, toggleIconId) {
+            const passwordField = document.getElementById(inputId);
+            const icon = document.getElementById(toggleIconId);
             if (passwordField.type === 'password') {
                 passwordField.type = 'text';
                 icon.classList.remove('fa-eye');
@@ -53,46 +59,42 @@
                 icon.classList.remove('fa-eye-slash');
                 icon.classList.add('fa-eye');
             }
+        }
+
+        document.getElementById('toggleNewPassword').addEventListener('click', function () {
+            togglePasswordVisibility('newPassword', 'toggleNewPassword');
         });
 
-        document.getElementById('toggleConfirmPassword').addEventListener('click', function() {
-            var confirmPasswordField = document.getElementById('confirmPassword');
-            var icon = document.getElementById('toggleConfirmPassword');
-            if (confirmPasswordField.type === 'password') {
-                confirmPasswordField.type = 'text';
-                icon.classList.remove('fa-eye');
-                icon.classList.add('fa-eye-slash');
+        document.getElementById('toggleConfirmPassword').addEventListener('click', function () {
+            togglePasswordVisibility('confirmPassword', 'toggleConfirmPassword');
+        });
+
+        // Live password strength validation
+        const passwordStrength = document.getElementById('passwordStrength');
+        document.getElementById('newPassword').addEventListener('input', function () {
+            const password = this.value;
+            if (password.length < 6) {
+                passwordStrength.textContent = 'Weak: Password must be at least 6 characters long.';
+                passwordStrength.className = 'text-red-500';
+            } else if (!/[A-Z]/.test(password)) {
+                passwordStrength.textContent = 'Medium: Include at least one uppercase letter.';
+                passwordStrength.className = 'text-yellow-500';
+            } else if (!/[0-9]/.test(password)) {
+                passwordStrength.textContent = 'Strong: Add a number for extra security.';
+                passwordStrength.className = 'text-blue-500';
             } else {
-                confirmPasswordField.type = 'password';
-                icon.classList.remove('fa-eye-slash');
-                icon.classList.add('fa-eye');
+                passwordStrength.textContent = 'Very Strong: Good job!';
+                passwordStrength.className = 'text-green-500';
             }
         });
 
-        // Function to handle form submission and validation
-        document.getElementById('changePasswordForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent form submission
-            
-            var newPassword = document.getElementById('newPassword').value;
-            var confirmPassword = document.getElementById('confirmPassword').value;
-
-            // Hide messages initially
-            document.getElementById('message').classList.add('hidden');
-            document.getElementById('successMessage').classList.add('hidden');
-
-            // Check if passwords match
-            if (newPassword === confirmPassword) {
-                // Simulate successful password update
-                document.getElementById('successMessage').classList.remove('hidden');
-            } else {
-                // Display error message if passwords do not match
-                document.getElementById('message').classList.remove('hidden');
-            }
+        // Open and close modal
+        document.getElementById('openModal').addEventListener('click', function () {
+            document.getElementById('passwordModal').classList.remove('hidden');
         });
 
-        // Function to close the modal
         function closeModal() {
-            document.querySelector('.fixed').style.display = 'none';
+            document.getElementById('passwordModal').classList.add('hidden');
         }
     </script>
 </body>
