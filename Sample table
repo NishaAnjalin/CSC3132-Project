@@ -9,10 +9,10 @@ CREATE TABLE `timetable` (
 
 timetable.php
 <?php
-$servername = "localhost";
+$servername = "127.0.0.1:3306";
 $username = "root";
-$password = "";
-$dbname = "your_database";
+$password = "mariadb";
+$dbname = "timetable_management";
 
 // Connect to the database
 $conn = new mysqli($servername, $username, $password, $dbname);
