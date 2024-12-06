@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Database connection
-    $conn = new mysqli('localhost', 'root', 'mariadb', 'timetable_management');
+    $conn = new mysqli('127.0.0.1:3306', 'root', 'mariadb', 'timetable_management');
 
     // Check connection
     if ($conn->connect_error) {
