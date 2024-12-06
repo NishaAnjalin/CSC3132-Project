@@ -16,12 +16,12 @@
             <!-- User Form -->
             <form action="update_user.php" method="POST">
                 <!-- Hidden field for User ID -->
-                <input type="hidden" name="user_id" value="<?php echo isset($user_id) ? htmlspecialchars($user_id) : ''; ?>">
+                <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
 
                 <!-- User Name -->
                 <div class="mb-4">
                     <label class="block text-gray-700 font-bold mb-2" for="name">Name</label>
-                    <input type="text" id="name" name="name" value="<?php echo isset($user['name']) ? htmlspecialchars($user['name']) : ''; ?>" 
+                    <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($user['name']); ?>" 
                            class="bg-gray-300 p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                 </div>
 
@@ -30,9 +30,9 @@
                     <label class="block text-gray-700 font-bold mb-2" for="access">Access Level</label>
                     <select id="access" name="access" 
                             class="bg-gray-300 p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="Admin" <?php echo (isset($user['access_level']) && $user['access_level'] == 'Admin') ? 'selected' : ''; ?>>Admin</option>
-                        <option value="Editor" <?php echo (isset($user['access_level']) && $user['access_level'] == 'Editor') ? 'selected' : ''; ?>>Editor</option>
-                        <option value="Viewer" <?php echo (isset($user['access_level']) && $user['access_level'] == 'Viewer') ? 'selected' : ''; ?>>Viewer</option>
+                        <option value="Admin" <?php echo ($user['access_level'] == 'Admin') ? 'selected' : ''; ?>>Admin</option>
+                        <option value="Editor" <?php echo ($user['access_level'] == 'Editor') ? 'selected' : ''; ?>>Editor</option>
+                        <option value="Viewer" <?php echo ($user['access_level'] == 'Viewer') ? 'selected' : ''; ?>>Viewer</option>
                     </select>
                 </div>
 
@@ -56,7 +56,7 @@
             <h2 class="text-black text-lg font-bold mb-4">Change Password</h2>
             <form action="change_password.php" method="POST">
                 <!-- Hidden User ID -->
-                <input type="hidden" name="user_id" value="<?php echo isset($user_id) ? htmlspecialchars($user_id) : ''; ?>">
+                <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
 
                 <!-- New Password -->
                 <div class="mb-4">
@@ -83,7 +83,11 @@
         // Toggle modal visibility
         function toggleModal(id) {
             const modal = document.getElementById(id);
-            modal.classList.toggle('hidden');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+            } else {
+                modal.classList.add('hidden');
+            }
         }
     </script>
 </body>
