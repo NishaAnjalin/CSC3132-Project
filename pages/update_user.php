@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $access = $_POST['access'];
 
     // Database connection
-    $conn = new mysqli('localhost', 'root', '', 'your_database');
+    $conn = new mysqli('127.0.0.1:3306', 'root', 'mariadb', 'timetable_management');
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
