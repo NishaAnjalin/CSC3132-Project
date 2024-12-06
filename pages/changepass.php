@@ -20,6 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
     // Mock success message
-    echo '<script>alert("Password updated successfully!"); window.location.href = "index.html";</script>';
+    echo '<script>alert("Password updated successfully!"); window.location.href = "index.php";</script>';
 }
 ?>
