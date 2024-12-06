@@ -19,6 +19,9 @@
         <div class="bg-white p-6 rounded shadow-md w-96">
             <h2 class="text-black text-lg font-bold mb-4 text-center">Change New Password</h2>
             <form action="changepass.php" method="POST" id="changePasswordForm">
+                <!-- CSRF Token -->
+                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+
                 <!-- New Password Field -->
                 <div class="mb-4 relative">
                     <label class="block text-gray-700">New Password</label>
@@ -36,10 +39,15 @@
                 <!-- Password Strength -->
                 <p id="passwordStrength" class="text-sm mb-4"></p>
 
+                <!-- Error Messages -->
+                <div id="errorMessages" class="text-red-500 text-sm mb-4 hidden">
+                    <ul></ul>
+                </div>
+
                 <!-- Buttons -->
                 <div class="flex justify-between">
                     <button type="button" class="bg-red-500 text-white p-2 rounded w-24" onclick="closeModal()">Cancel</button>
-                    <button type="submit" class="bg-green-500 text-white p-2 rounded w-24">Update</button>
+                    <button type="submit" id="submitButton" class="bg-green-500 text-white p-2 rounded w-24" disabled>Update</button>
                 </div>
             </form>
         </div>
@@ -86,7 +94,45 @@
                 passwordStrength.textContent = 'Very Strong: Good job!';
                 passwordStrength.className = 'text-green-500';
             }
+            validateForm();
         });
+
+        // Validate form inputs
+        function validateForm() {
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const submitButton = document.getElementById('submitButton');
+            const errorMessages = document.getElementById('errorMessages');
+            const errorList = errorMessages.querySelector('ul');
+            let errors = [];
+
+            // Reset error messages
+            errorList.innerHTML = '';
+            errorMessages.classList.add('hidden');
+
+            // Password match check
+            if (newPassword !== confirmPassword) {
+                errors.push('Passwords do not match.');
+            }
+
+            // Password strength check
+            if (newPassword.length < 6) {
+                errors.push('Password is too weak. It should be at least 6 characters long.');
+            }
+
+            // Display errors
+            if (errors.length > 0) {
+                errorMessages.classList.remove('hidden');
+                errors.forEach(function (error) {
+                    const li = document.createElement('li');
+                    li.textContent = error;
+                    errorList.appendChild(li);
+                });
+                submitButton.disabled = true;
+            } else {
+                submitButton.disabled = false;
+            }
+        }
 
         // Open and close modal
         document.getElementById('openModal').addEventListener('click', function () {
