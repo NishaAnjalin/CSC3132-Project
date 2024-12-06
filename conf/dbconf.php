@@ -1,15 +1,25 @@
 <?php
-$servername = "127.0.0.1:3306"; // Ensure this matches your local setup
-$username = "root"; // Replace with your DB username
-$password = "mariadb"; // Replace with your DB password
-$dbname = "timetable_management"; // Ensure the database name is correct
+//constant variable (variable name, value)
+define('SERVERNAME', '127.0.0.1:3306');
+define('USERNAME', 'root');
+define('PASSWORD', 'mariadb');
+define('DBNAME', 'timetable_management');
+try{
+	//connect with database
+$connect = mysqli_connect(SERVERNAME,USERNAME,PASSWORD,DBNAME);
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (!$connect) {
+	die("connection failed".mysqli_connect_error()); //die - stop process after that
+} else {
+	//echo "Connection successfully <br>";
+	}
 }
-// Continue with your logic
+catch (Exception $e){
+	die($e->getMessage());
+}
+
+//echo "abc <br>"
+
+
 ?>
+
