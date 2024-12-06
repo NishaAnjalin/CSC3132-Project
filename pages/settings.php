@@ -1,7 +1,7 @@
 <?php
 // Start session and connect to the database
 session_start();
-$servername = "127.0.0.1"; // Updated to correct localhost IP
+$servername = "127.0.0.1:3306"; // Updated to correct localhost IP
 $username = "root";
 $password = "mariadb";
 $dbname = "timetable_management";
