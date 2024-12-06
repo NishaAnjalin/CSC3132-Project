@@ -2,7 +2,7 @@
 session_start();
 
 // Connect to the database
-$servername = "localhost";
+$servername = "127.0.0.1:3306";
 $username = "root";
 $password = "mariadb";
 $dbname = "timetable_management";
