@@ -23,7 +23,7 @@ if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_tok
 }
 
 // Get form data and sanitize
-$username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+$username = filter_input(INPUT_POST, 'username');
 $password = $_POST['password']; // Password is sanitized differently
 
 // Fetch user from the database
