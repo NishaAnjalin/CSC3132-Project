@@ -1,6 +1,6 @@
 <?php
 // Start session and connect to the database
-session_start();
+//session_start();
 $servername = "127.0.0.1:3306"; // Updated to correct localhost IP
 $username = "root";
 $password = "mariadb";
@@ -14,15 +14,15 @@ if ($conn->connect_error) {
 }
 
 // Fetch user ID from session
-$user_id = $_SESSION['user_id'] ?? 1; // Fallback to 1 if session is not set (for testing)
+//$user_id = $_SESSION['user_id'] ?? 1; // Fallback to 1 if session is not set (for testing)
 
 // Fetch user settings
-$sql = "SELECT * FROM settings WHERE user_id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$settings = $result->fetch_assoc() ?: ['notifications' => 'Enabled', 'theme' => 'Light', 'language' => 'English'];
+//$sql = "SELECT * FROM settings WHERE user_id = ?";
+//$stmt = $conn->prepare($sql);
+//$stmt->bind_param("i", $user_id);
+//$stmt->execute();
+//$result = $stmt->get_result();
+//$settings = $result->fetch_assoc() ?: ['notifications' => 'Enabled', 'theme' => 'Light', 'language' => 'English'];
 ?>
 
 <!DOCTYPE html>
