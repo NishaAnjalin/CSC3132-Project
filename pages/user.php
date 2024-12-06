@@ -1,28 +1,3 @@
-<?php
-// Connect to database
-$servername = "127.0.0.1:3306";
-$username = "root";
-$password = "mariadb";
-$dbname = "timetable_management;
-";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Fetch user details (replace 1 with a dynamic user ID or session-based user ID)
-$user_id = 1; // For demonstration, assuming the user ID is 1
-$sql = "SELECT name, access_level FROM users WHERE id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$user = $result->fetch_assoc();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -117,7 +92,3 @@ $user = $result->fetch_assoc();
     </script>
 </body>
 </html>
-
-<?php
-$conn->close();
-?>
