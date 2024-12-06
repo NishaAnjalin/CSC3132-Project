@@ -10,11 +10,11 @@
             <!-- Sidebar Header -->
             <div class="text-white text-lg font-bold mb-6">Menu</div>
             <!-- Sidebar Links -->
-            <a href="?content=../pages/timetable.php" class="fas fa-bars text-white text-2xl mb-8" title="Timetable"></a>
-            <a href="?content=../pages/user.php" class="fas fa-user text-white text-2xl mb-8" title="User"></a>
-            <a href="?content=../pages/settings.php" class="fas fa-cog text-white text-2xl mb-8" title="Settings"></a>
+            <a href="?content=../pages/timetable/timetable.php" class="fas fa-bars text-white text-2xl mb-8" title="Timetable"></a>
+            <a href="?content=../pages/user/user.php" class="fas fa-user text-white text-2xl mb-8" title="User"></a>
+            <a href="?content=../pages/settings/settings.php" class="fas fa-cog text-white text-2xl mb-8" title="Settings"></a>
             <a href="?content=../pages/sync.php" class="fas fa-sync-alt text-white text-2xl mb-8" title="Sync"></a>
-            <a href="../pages/login.php" class="fas fa-sign-out-alt text-white text-2xl" title="Logout"></a>
+            <a href="../pages/login/login.php" class="fas fa-sign-out-alt text-white text-2xl" title="Logout"></a>
         </div>
 
         <!-- Main Content -->
