@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $reservation_date = $_POST['reservation_date'];
     $time_slot = $_POST['time_slot'];
 
-    $conn = getConnection();
+    //$conn = getConnection();
     $stmt = $conn->prepare("INSERT INTO reservations (user_id, lab_name, reservation_date, time_slot) VALUES (?, ?, ?, ?)");
     $stmt->bind_param("ssss", $user_id, $lab_name, $reservation_date, $time_slot);
 
