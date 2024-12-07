@@ -15,6 +15,7 @@
             <a href="?content=../pages/settings/settings.php" class="fas fa-cog text-white text-2xl mb-8" title="Settings"></a>
             <a href="?content=../pages/sync.php" class="fas fa-sync-alt text-white text-2xl mb-8" title="Sync"></a>
             <a href="../pages/login/login.php" class="fas fa-sign-out-alt text-white text-2xl" title="Logout"></a>
+            <a href="../pages/login/logout.php" class="fas fa-sign-out-alt text-white text-2xl" title="Logout"></a>
         </div>
 
         <!-- Main Content -->
