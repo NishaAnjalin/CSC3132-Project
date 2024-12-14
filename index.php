@@ -6,7 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hii</h1>
     <a href="../dashboard/dashboard.php"> go to dashboard </a>
 </body>
 </html>
