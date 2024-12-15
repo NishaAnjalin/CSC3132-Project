@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="../dashboard/dashboard.php"> go to dashboard </a>
+    <a href="public/dashboard/dashboard.php"> go to dashboard </a>
 </body>
 </html>
