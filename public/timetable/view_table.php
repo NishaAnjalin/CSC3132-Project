@@ -165,3 +165,40 @@ updateTimetable($timetable, $result);
 
 </body>
 </html>
+<?php
+
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['popup_status'])) {
+        $selectedSubject = $_POST['popup_subject'];
+        $selectedStatus = $_POST['popup_status'];
+        $popupId = $_POST['id'];
+        $popupLabId = $_POST['lab_id'];
+
+        // SQL update query
+        $sql = "UPDATE timetable_slots 
+                SET subject_code = ?, status = ?
+                WHERE id = ? AND lab_id = ?";
+
+        if ($stmt = $conn->prepare($sql)) {
+            $stmt->bind_param("ssii", $selectedSubject, $selectedStatus, $popupId, $popupLabId);
+            if ($stmt->execute()) {
+                $_POST['popup_status']='';
+                echo "<script>
+                        alert('Record updated successfully!');
+                        closePopup();
+                        setTimeout(function() {
+                        window.location.href = '../dashboard/dashboard.php?content=../../public/timetable/view_table.php&lab_id=$popupLabId';
+                        }, 1000); // 1-second delay
+                      </script>";
+                      
+            } else {
+                echo "<script>alert('Error updating record: {$stmt->error}');</script>";
+            }
+            $stmt->close();
+        } else {
+            echo "<script>alert('Error preparing query: {$conn->error}');</script>";
+        }
+
+        $conn->close();
+    }
+    ?>
