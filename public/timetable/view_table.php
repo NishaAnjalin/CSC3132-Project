@@ -1,5 +1,4 @@
 <?php
-require '../../conf/dbconf.php';
 
 // Utility Functions
 function initializeTimetable($days, $hours) {

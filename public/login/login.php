@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="bg-white bg-opacity-20 backdrop-blur-md rounded-lg p-8 w-96">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-2xl font-bold text-gray-800">Login</h2>
-                <button class="text-blue-700 text-xl font-bold">X</button>
+                <button class="text-blue-700 text-xl font-bold" onclick="window.location.href='../../index.php';">X</button>
             </div>
 
             <!-- Display Error Message -->
