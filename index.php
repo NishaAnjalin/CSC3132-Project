@@ -7,5 +7,9 @@
 </head>
 <body>
     <a href="public/dashboard/dashboard.php"> go to dashboard </a>
+    <?php
+    $password_hash = password_hash("1234", PASSWORD_BCRYPT);
+    echo "<br>".$password_hash;
+    ?>
 </body>
 </html>

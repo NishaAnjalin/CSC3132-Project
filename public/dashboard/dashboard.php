@@ -1,3 +1,18 @@
+<?php  
+//ob_start();
+session_start();
+require_once '../../conf/dbconf.php';
+require_once '../function/fun.php';
+
+
+
+if (!isAuthenticated()) {
+  header('Location: ../login/login.php');
+  exit();
+}
+$user_type=$_SESSION['user_type'];
+$user_name=isset($_SESSION['lec_name'])?$_SESSION['lec_name']:"";
+?>
 <html>
 <head>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -14,7 +29,7 @@
             <a href="?content=../public/user/user.php" class="fas fa-user text-white text-2xl mb-8" title="User"></a>
             <a href="?content=../public/settings/settings.html" class="fas fa-cog text-white text-2xl mb-8" title="Settings"></a>
             <a href="?content=../public/sync.html" class="fas fa-sync-alt text-white text-2xl mb-8" title="Sync"></a>
-            <a href="../public/login/login.php" class="fas fa-sign-out-alt text-white text-2xl" title="Logout"></a>
+            <a href="../login/login.php" class="fas fa-sign-out-alt text-white text-2xl" title="Logout"></a>
         </div>
 
         <!-- Main Content -->
@@ -40,7 +55,7 @@
                     <div class="flex items-center space-x-3 cursor-pointer">
                         <img src="https://via.placeholder.com/40" alt="Profile" class="rounded-full w-10 h-10">
                         <div class="text-gray-700">
-                            <p class="font-bold">John Doe</p>
+                            <p class="font-bold"><?php echo $_SESSION['user']; ?></p>
                             <p class="text-sm">Admin</p>
                         </div>
                     </div>
@@ -89,3 +104,7 @@
     </div>
 </body>
 </html>
+
+<?php
+    //ob_end_flush();
+?>
