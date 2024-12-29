@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 26, 2024 at 07:31 PM
+-- Generation Time: Dec 29, 2024 at 01:19 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -39,7 +39,34 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`admin_id`, `username`, `password`, `admin_type`) VALUES
-(1, 'admin1', '$2y$10$SGFzU7w.2KQlg1bpnR6W7OkdjHY.etq1D2Oc/ri.afctcodFYRVW.', 'superadmin');
+(1, 'admin', '$2y$10$eeYYgJWnm6P7w0kM7DbSxeACr/jrTCNrQZHK0aSIEX8uyMT4UXzgG', 'superadmin'),
+(2, 'admin3', '$2y$10$ii4PWniiU5CLBJr5XvbrsOlYGBogDI8MDdAjBE2jzoiX7xOFdO55S', 'moderator');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subjects`
+--
+
+CREATE TABLE `subjects` (
+  `id` int(11) NOT NULL,
+  `subject_code` varchar(10) NOT NULL,
+  `subject_name` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `subjects`
+--
+
+INSERT INTO `subjects` (`id`, `subject_code`, `subject_name`, `created_at`, `updated_at`) VALUES
+(1, 'CSC3122', 'CSC3122', '2024-12-29 06:07:28', '2024-12-29 06:07:28'),
+(2, 'CSC3132', 'CSC3132', '2024-12-29 06:07:28', '2024-12-29 06:07:28'),
+(3, 'CSH3123', 'CSH3123', '2024-12-29 06:07:28', '2024-12-29 06:07:28'),
+(4, 'IT2123', 'IT2123', '2024-12-29 06:07:28', '2024-12-29 06:07:28'),
+(5, 'IT3122', 'IT3122', '2024-12-29 06:07:28', '2024-12-29 06:07:28'),
+(8, 'IT3223', 'IT3223', '2024-12-29 12:18:24', '2024-12-29 12:18:24');
 
 -- --------------------------------------------------------
 
@@ -62,7 +89,7 @@ CREATE TABLE `timetable_slots` (
 --
 
 INSERT INTO `timetable_slots` (`id`, `day_of_week`, `start_time`, `end_time`, `lab_id`, `subject_code`, `status`) VALUES
-(11, 'Monday', '08:30:00', '09:30:00', 1, 'CSH3123', 'cancelled'),
+(11, 'Monday', '08:30:00', '09:30:00', 1, 'IT2123', 'available'),
 (11, 'Monday', '08:30:00', '09:30:00', 2, 'CSC3132', 'available'),
 (12, 'Tuesday', '08:30:00', '09:30:00', 1, 'CSH3123', 'reserved'),
 (12, 'Tuesday', '08:30:00', '09:30:00', 2, 'CSH3123', 'reserved'),
@@ -256,6 +283,13 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`);
 
 --
+-- Indexes for table `subjects`
+--
+ALTER TABLE `subjects`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `subject_code` (`subject_code`);
+
+--
 -- Indexes for table `timetable_slots`
 --
 ALTER TABLE `timetable_slots`
@@ -275,7 +309,13 @@ ALTER TABLE `timetable_slots1`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `subjects`
+--
+ALTER TABLE `subjects`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `timetable_slots`
