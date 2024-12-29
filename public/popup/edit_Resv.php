@@ -1,4 +1,8 @@
 <?php
+session_start();
+require_once '../../conf/dbconf.php';
+require_once '../function/fun.php';
+
 // Retrieve POST data
 $subject = $_POST['subject'] ?? '';
 $status = $_POST['status'] ?? '';
@@ -28,13 +32,9 @@ $day = $_POST['day'] ?? '';
         <form action="" method="POST" id="reservationForm">
             <div class="mb-4">
                 <label class="block text-gray-700">Subject</label>
+                    <?php opfill($subject); ?>
                 <select name="popup_subject" id="popup-subject" class="w-full p-2 border border-gray-300 rounded-lg">
-                    <option value="" <?php echo $subject === '' ? 'selected' : ''; ?>>None</option>
-                    <option value="CSC3122" <?php echo $subject === 'CSC3122' ? 'selected' : ''; ?>>CSC3122</option>
-                    <option value="CSC3132" <?php echo $subject === 'CSC3132' ? 'selected' : ''; ?>>CSC3132</option>
-                    <option value="CSH3123" <?php echo $subject === 'CSH3123' ? 'selected' : ''; ?>>CSH3123</option>
-                    <option value="IT2123" <?php echo $subject === 'IT2123' ? 'selected' : ''; ?>>IT2123</option>
-                    <option value="IT3122" <?php echo $subject === 'IT3122' ? 'selected' : ''; ?>>IT3122</option>
+                    <?php optiongen($conn, "subjects", "subject_code","subject_code"); ?>
                 </select>
             </div>
 
