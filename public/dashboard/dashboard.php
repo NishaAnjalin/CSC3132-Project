@@ -1,18 +1,16 @@
-<?php  
-//ob_start();
+<?php
 session_start();
 require_once '../../conf/dbconf.php';
 require_once '../function/fun.php';
 
-
-
 if (!isAuthenticated()) {
-  header('Location: ../login/login.php');
-  exit();
+    header('Location: ../login/login.php');
+    exit();
 }
-$user_type=$_SESSION['user_type'];
-$user_name=isset($_SESSION['lec_name'])?$_SESSION['lec_name']:"";
+
+$user_type = $_SESSION['user_type'];
 ?>
+
 <html>
 <head>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -26,10 +24,10 @@ $user_name=isset($_SESSION['lec_name'])?$_SESSION['lec_name']:"";
             <div class="text-white text-lg font-bold mb-6">Menu</div>
             <!-- Sidebar Links -->
             <a href="?content=../../public/timetable/view_table.php" class="fas fa-bars text-white text-2xl mb-8" title="Timetable"></a>
-            <a href="?content=../public/user/user.php" class="fas fa-user text-white text-2xl mb-8" title="User"></a>
-            <a href="?content=../public/settings/settings.html" class="fas fa-cog text-white text-2xl mb-8" title="Settings"></a>
-            <a href="?content=../public/sync.html" class="fas fa-sync-alt text-white text-2xl mb-8" title="Sync"></a>
-            <a href="../login/login.php" class="fas fa-sign-out-alt text-white text-2xl" title="Logout"></a>
+            <a href="?content=../../public/user/user_panel.php" class="fas fa-user text-white text-2xl mb-8" title="User"></a>
+            <a href="?content=../../public/settings/settings.html" class="fas fa-cog text-white text-2xl mb-8" title="Settings"></a>
+            <a href="?content=../../public/sync.html" class="fas fa-sync-alt text-white text-2xl mb-8" title="Sync"></a>
+            <a href="../login/login.php?logout=true" class="fas fa-sign-out-alt text-white text-2xl" title="Logout"></a>
         </div>
 
         <!-- Main Content -->

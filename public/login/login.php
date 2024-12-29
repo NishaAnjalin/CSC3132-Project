@@ -1,17 +1,19 @@
 <?php
+session_start(); // Ensure the session is started at the beginning
+
 include '../../conf/dbconf.php';
 include_once '../function/fun.php';
 
-if (isAuthenticated()) {
+// Check if the user is authenticated and wants to logout
+if (isAuthenticated() && isset($_GET['logout'])) {
     logout();
     exit();
 }
 
+// Handle login form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    echo $username . $password;
-
 
     // Prepare the SQL statement
     $stmt = $conn->prepare("SELECT password, admin_type FROM admin WHERE username = ?");
@@ -30,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Verify the password and handle the result
     if ($password_hash !== null && password_verify($password, $password_hash)) {
-        session_start(); // Ensure the session is started
         $_SESSION['user'] = $username;
         $_SESSION['user_type'] = $user_type;
         header('Location: ../dashboard/dashboard.php');
@@ -40,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
 <html>
 <head>
     <title>Login</title>
