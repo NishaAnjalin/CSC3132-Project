@@ -58,6 +58,12 @@
                 <!-- Hidden User ID -->
                 <input type="hidden" name="user_id" value="<?php echo isset($user_id) ? htmlspecialchars($user_id) : ''; ?>">
 
+                <!-- Old Password -->
+                <div class="mb-4">
+                    <label class="block text-gray-700">Current Password</label>
+                    <input type="password" name="old_password" class="bg-gray-300 p-2 rounded w-full" required>
+                </div>
+
                 <!-- New Password -->
                 <div class="mb-4">
                     <label class="block text-gray-700">New Password</label>
