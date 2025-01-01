@@ -80,11 +80,10 @@ if (isset($_POST['action'])) {
     elseif ($action === 'delete') {
         if (isset($_POST['admin_id'])) {
             $admin_id = $_POST['admin_id'];
-
             // Prepare and execute the delete query
             $stmt = $conn->prepare("DELETE FROM admin WHERE admin_id = ?");
             $stmt->bind_param("i", $admin_id);
-
+            echo "ok";
             if ($stmt->execute()) {
                 $_SESSION['success'] = "User removed successfully!";
             } else {
@@ -93,7 +92,8 @@ if (isset($_POST['action'])) {
             $stmt->close();
         }
     }
-
+    // echo $action;
+    // echo $admin_id;
     // Redirect back to the user management page
     header('Location: ../../dashboard/dashboard.php?content=../../public/user/modals/manage_users_modal.php');
     exit();

@@ -25,8 +25,8 @@ $user_type = $_SESSION['user_type'];
             <!-- Sidebar Links -->
             <a href="?content=../../public/timetable/view_table.php" class="fas fa-bars text-white text-2xl mb-8" title="Timetable"></a>
             <a href="?content=../../public/user/user_panel.php" class="fas fa-user text-white text-2xl mb-8" title="User"></a>
-            <a href="?content=../../public/settings/settings.html" class="fas fa-cog text-white text-2xl mb-8" title="Settings"></a>
-            <a href="?content=../../public/sync.html" class="fas fa-sync-alt text-white text-2xl mb-8" title="Sync"></a>
+            <!-- <a href="?content=../../public/settings/settings.html" class="fas fa-cog text-white text-2xl mb-8" title="Settings"></a> -->
+            <!-- <a href="?content=../../public/sync.html" class="fas fa-sync-alt text-white text-2xl mb-8" title="Sync"></a> -->
             <a href="../login/login.php?logout=true" class="fas fa-sign-out-alt text-white text-2xl" title="Logout"></a>
         </div>
 

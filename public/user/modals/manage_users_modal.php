@@ -110,7 +110,7 @@ $stmt->close();
                 <div class="mb-4">
                     <input type="password" name="password" placeholder="Enter Password" class="bg-gray-300 p-2 rounded w-full">
                 </div>
-                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Update</button>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Update</button>
                 <button type="button" onclick="closeModal()" class="bg-red-500 text-white px-4 py-2 rounded">Cancel</button>
             </form>
         </div>
@@ -123,7 +123,7 @@ $stmt->close();
             <p class="mb-4">Are you sure you want to delete this user?</p>
             <form action="../user/modals/user_actions.php" method="POST">
                 <input type="hidden" name="action" value="delete">
-                <input type="hidden" id="admin_id" name="admin_id">
+                <input type="hidden" id="admin_id1" name="admin_id">
                 <div class="flex justify-between">
                     <button type="button" onclick="closeModal()" class="bg-gray-500 text-white px-4 py-2 rounded">Cancel</button>
                     <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Delete</button>
@@ -146,7 +146,7 @@ $stmt->close();
     }
 
     function confirmDelete(id) {
-        document.getElementById('admin_id').value = id;
+        document.getElementById('admin_id1').value = id;
         document.getElementById('deleteConfirmation').classList.remove('hidden');
     }
 
