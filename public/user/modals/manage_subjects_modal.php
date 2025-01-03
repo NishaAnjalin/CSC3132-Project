@@ -79,8 +79,10 @@ $stmt->close();
                     <div class="mb-4">
                         <input type="text" name="subject_name" placeholder="Enter Subject Name" class="bg-gray-300 p-2 rounded w-full" required>
                     </div>
-                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Add Subject</button>
-                    <button type="button" onclick="closeModal()" class="bg-red-500 text-white px-4 py-2 rounded">Cancel</button>
+                    <div class="flex justify-between">
+                        <button type="button" onclick="closeModal()" class="bg-red-500 text-white px-4 py-2 rounded">Cancel</button>
+                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Add Subject</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -100,8 +102,10 @@ $stmt->close();
                         <label class="block text-gray-700">Subject Code</label>
                         <input type="text" id="subject_code" name="subject_code" class="bg-gray-300 p-2 rounded w-full" required>
                     </div>
-                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Update</button>
-                    <button type="button" onclick="closeModal()" class="bg-red-500 text-white px-4 py-2 rounded">Cancel</button>
+                    <div class="flex justify-between"> 
+                        <button type="button" onclick="closeModal()" class="bg-red-500 text-white px-4 py-2 rounded">Cancel</button>
+                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Update</button>
+                    </div>
                 </form>
             </div>
         </div>

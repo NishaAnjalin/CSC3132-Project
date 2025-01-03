@@ -15,7 +15,7 @@
     <div id="error_message" class="text-red-500 mb-4 hidden"></div>
     <div class="flex justify-between">
         <button type="button" onclick="closeModal()" class="bg-red-500 text-white px-4 py-2 rounded">Cancel</button>
-        <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Update</button>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Update</button>
     </div>
 </form>
 
